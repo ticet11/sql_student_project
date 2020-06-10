@@ -55,8 +55,7 @@ classes = [
 ]
 
 
-def classFinder(students, classes):
-    for student in students:
+def classFinder(student, classes):
         class_list = []
         class_name = ''
         while (len(class_list) < 5):
@@ -78,4 +77,8 @@ def classFinder(students, classes):
         return f'Student {student} has these classes:\n{class_list}'
 
 
-print(classFinder(students, classes))
+print(classFinder(students[0], classes))
+# print(classFinder(students[1], classes))
+# print(classFinder(students[2], classes))
+# print(classFinder(students[3], classes))
+# print(classFinder(students[4], classes))
