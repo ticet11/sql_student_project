@@ -9,3 +9,5 @@
     - [x] Group students by the courses that they are enrolled in
     - [x] Create a summary report of courses and their average grades, sorted by the most challenging course (course with the lowest average grade) to the easiest course
     - [x] Finding which student and professor have the most courses in common
+
+> Included python program was created to generate randomized class assignments for the students.
