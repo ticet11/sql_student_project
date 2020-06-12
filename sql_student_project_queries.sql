@@ -6,38 +6,17 @@ select * from courses;
 select * from grades;
 
 # The average grade given by each professor    
-SELECT courses_teachers_id 'Teacher ID', avg(grades_value) 'Averages' FROM grades LEFT JOIN courses
+SELECT courses_teachers_id 'Teacher ID', avg(grades_value) 'Averages' 
+FROM grades LEFT JOIN courses
 	ON grades.grades_courses_id = courses.courses_id
-	where courses_teachers_id = 1
-UNION SELECT courses_teachers_id, AVG(grades_value) FROM grades LEFT JOIN courses
-	ON grades.grades_courses_id = courses.courses_id
-	where courses_teachers_id = 2
-UNION SELECT courses_teachers_id, AVG(grades_value) FROM grades LEFT JOIN courses
-	ON grades.grades_courses_id = courses.courses_id
-	where courses_teachers_id = 3
-UNION SELECT courses_teachers_id, AVG(grades_value) FROM grades LEFT JOIN courses
-	ON grades.grades_courses_id = courses.courses_id
-	where courses_teachers_id = 4
-UNION SELECT courses_teachers_id, AVG(grades_value) FROM grades LEFT JOIN courses
-	ON grades.grades_courses_id = courses.courses_id
-	where courses_teachers_id = 5;
+    group by courses_teachers_id;
+
     
 # Top grades for each student
-SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grade' from grades left join courses
+SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grade' 
+from grades left join courses
 	ON grades.grades_courses_id = courses.courses_id
-    WHERE grades_students_id = 1
-UNION SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grades' from grades left join courses
-	ON grades.grades_courses_id = courses.courses_id
-    WHERE grades_students_id = 2
-UNION SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grades' from grades left join courses
-	ON grades.grades_courses_id = courses.courses_id
-    WHERE grades_students_id = 3
-UNION SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grades' from grades left join courses
-	ON grades.grades_courses_id = courses.courses_id
-    WHERE grades_students_id = 4
-UNION SELECT grades_students_id 'Student', MAX(grades_value) 'Best Grades' from grades left join courses
-	ON grades.grades_courses_id = courses.courses_id
-    WHERE grades_students_id = 5;
+    group by grades_students_id;
     
 # Group students by the courses they are enrolled in.
 SELECT grades_courses_id 'Course ID', COUNT(grades_courses_id) 'Student Count'
@@ -46,26 +25,8 @@ GROUP BY grades_courses_id;
 
 # Course difficulty summary report - High to Low
 SELECT grades_courses_id 'Course ID', avg(grades_value) AS Averages FROM grades 
-	where grades_courses_id = 1
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 2
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 3
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 4
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 5
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 6
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 7
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 8
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 9
-UNION SELECT grades_courses_id 'Course ID', avg(grades_value) 'Averages' FROM grades 
-	where grades_courses_id = 10
-ORDER BY Averages DESC;
+group by grades_courses_id
+ORDER BY Averages ASC;
 
 # Students and Teachers that share the most classes in decending order
 SELECT
